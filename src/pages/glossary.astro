@@ -3,11 +3,22 @@ import Base from '../layouts/Base.astro';
 
 // Add a term here whenever a post introduces new jargon. id = the anchor slug.
 const terms = [
+  { id: 'lifespan', term: 'Lifespan', plain: 'Total years lived, start to finish.', related: [{ label: 'More years, or more good years?', href: '/posts/lifespan-vs-healthspan/' }] },
+  { id: 'healthspan', term: 'Healthspan', plain: 'Years lived in good health, strong, capable, disease-free. The number longevity actually cares about.', related: [{ label: 'More years, or more good years?', href: '/posts/lifespan-vs-healthspan/' }] },
+  { id: 'compression-of-morbidity', term: 'Compression of morbidity', plain: 'Squeezing the sick, frail years into the shortest window at the very end of life.', related: [{ label: 'More years, or more good years?', href: '/posts/lifespan-vs-healthspan/' }] },
+  { id: 'hallmarks-of-aging', term: 'Hallmarks of aging', plain: 'The agreed list of twelve biological root drivers of ageing. They feed each other in a cascade rather than acting alone.', related: [{ label: 'The hallmarks of aging', href: '/posts/hallmarks-of-aging/' }] },
+  { id: 'cellular-senescence', term: 'Cellular senescence', plain: '"Zombie cells" that stop dividing but refuse to die, leaking inflammatory signals into the body.', related: [] },
+  { id: 'inflammaging', term: 'Inflammaging', plain: 'The low-grade chronic inflammation that builds with age, a fire alarm that never switches off.', related: [] },
+  { id: 'proteostasis', term: 'Proteostasis', plain: 'The cell’s quality control for proteins: building, folding and clearing them. It slows with age.', related: [] },
+  { id: 'nutrient-sensing', term: 'Nutrient sensing', plain: 'How a cell detects food and energy and switches between growth and repair.', related: [{ label: 'The build-vs-repair switch', href: '/posts/nutrient-sensing-switch/' }] },
+  { id: 'mtor', term: 'mTOR', plain: 'The master "grow" switch, turned up by protein and feeding. Builds muscle; harmful when always on.', related: [{ label: 'The build-vs-repair switch', href: '/posts/nutrient-sensing-switch/' }] },
+  { id: 'ampk', term: 'AMPK', plain: 'The "repair / energy-low" switch, turned up by exercise and fasting. The counterweight to mTOR.', related: [{ label: 'The build-vs-repair switch', href: '/posts/nutrient-sensing-switch/' }] },
+  { id: 'insulin-resistance', term: 'Insulin resistance', plain: 'When cells stop responding to insulin, so the body has to shout louder (high insulin). The start of metabolic disease.', related: [{ label: 'The build-vs-repair switch', href: '/posts/nutrient-sensing-switch/' }] },
+  { id: 'homa-ir', term: 'HOMA-IR', plain: 'A simple calculation from fasting glucose and insulin that estimates insulin resistance.', related: [{ label: 'The build-vs-repair switch', href: '/posts/nutrient-sensing-switch/' }] },
   { id: 'mitochondria', term: 'Mitochondria', plain: 'The cell’s "batteries", the organelles that produce most of its usable energy (ATP). Fewer and leakier ones is a core driver of ageing.', related: [{ label: 'Why you have to slow down to speed up', href: '/posts/slow-down-to-speed-up/' }] },
+  { id: 'mitochondrial-biogenesis', term: 'Mitochondrial biogenesis', plain: 'The body building new mitochondria in response to aerobic training, more batteries, not just more charge.', related: [] },
   { id: 'vo2max', term: 'VO₂max', plain: 'The most oxygen you can use at full effort. A strong, re-testable predictor of how long and how well you live, the engine’s "ceiling".', related: [{ label: 'Why you have to slow down to speed up', href: '/posts/slow-down-to-speed-up/' }] },
   { id: 'zone-2', term: 'Zone 2', plain: 'Easy, conversational-pace cardio. Hard enough to train the aerobic base, easy enough to hold a chat. Builds battery density.', related: [{ label: 'Why you have to slow down to speed up', href: '/posts/slow-down-to-speed-up/' }] },
-  { id: 'mitochondrial-biogenesis', term: 'Mitochondrial biogenesis', plain: 'The body building new mitochondria in response to aerobic training, more batteries, not just more charge.', related: [] },
-  { id: 'hallmarks-of-aging', term: 'Hallmarks of aging', plain: 'The agreed list of twelve biological root drivers of ageing. They feed each other in a cascade rather than acting alone.', related: [{ label: 'The hallmarks of aging', href: '/posts/hallmarks-of-aging/' }] },
 ];
 ---
 <Base title="Glossary" description="Plain-language definitions of the longevity jargon used across the series.">
