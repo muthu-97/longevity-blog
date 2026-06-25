@@ -1,0 +1,51 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('posts');
+  return posts.map((post) => ({ params: { slug: post.slug }, props: { post } }));
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+const d = post.data;
+const fmt = (x) => x.toLocaleDateString('en-GB', { year: 'numeric', month: 'short', day: 'numeric' });
+---
+<Base title={d.title} description={d.summary}>
+  <article>
+    {d.series && (
+      <div class="series-banner">
+        <span><span class="name">{d.series}</span>{d.seriesOrder ? ` · Part ${d.seriesOrder}${d.seriesTotal ? ` of ${d.seriesTotal}` : ''}` : ''}</span>
+        <span>
+          {d.prev && <a href={`/posts/${d.prev}/`}>← {d.prevTitle ?? 'Previous'}</a>}
+          {d.prev && d.next && <span> &nbsp;·&nbsp; </span>}
+          {d.next && <a href={`/posts/${d.next}/`}>{d.nextTitle ?? 'Next'} →</a>}
+        </span>
+      </div>
+    )}
+
+    <p class="kicker">Longevity, in plain words</p>
+    <h1>{d.title}</h1>
+    <p class="byline"><b>{d.author}</b> · Founder, Club EverStrong · {fmt(d.date)}{d.readingTime ? ` · ${d.readingTime}` : ''}</p>
+    {d.evidence && <p><span class="evidence">Evidence: {d.evidence}</span></p>}
+
+    <Content />
+
+    {(d.prev || d.next) && (
+      <nav class="series-nav">
+        {d.prev
+          ? <a href={`/posts/${d.prev}/`}><span class="dir">← Previous</span>{d.prevTitle ?? 'Previous'}</a>
+          : <span></span>}
+        {d.next
+          ? <a class="next" href={`/posts/${d.next}/`}><span class="dir">Next →</span>{d.nextTitle ?? 'Next'}</a>
+          : <span></span>}
+      </nav>
+    )}
+
+    <hr />
+    <footer>
+      Written by <b>Muthu</b>, founder of <b>Club EverStrong</b>, a longevity-focused training studio in Bengaluru. I write these as I learn them, and test every idea on our own floor before it goes in. <a href="/">← all posts</a>
+    </footer>
+  </article>
+</Base>

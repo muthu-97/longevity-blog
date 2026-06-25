@@ -1,0 +1,35 @@
+---
+import Base from '../layouts/Base.astro';
+
+// Add a term here whenever a post introduces new jargon. id = the anchor slug.
+const terms = [
+  { id: 'mitochondria', term: 'Mitochondria', plain: 'The cell’s "batteries", the organelles that produce most of its usable energy (ATP). Fewer and leakier ones is a core driver of ageing.', related: [{ label: 'Why you have to slow down to speed up', href: '/posts/slow-down-to-speed-up/' }] },
+  { id: 'vo2max', term: 'VO₂max', plain: 'The most oxygen you can use at full effort. A strong, re-testable predictor of how long and how well you live, the engine’s "ceiling".', related: [{ label: 'Why you have to slow down to speed up', href: '/posts/slow-down-to-speed-up/' }] },
+  { id: 'zone-2', term: 'Zone 2', plain: 'Easy, conversational-pace cardio. Hard enough to train the aerobic base, easy enough to hold a chat. Builds battery density.', related: [{ label: 'Why you have to slow down to speed up', href: '/posts/slow-down-to-speed-up/' }] },
+  { id: 'mitochondrial-biogenesis', term: 'Mitochondrial biogenesis', plain: 'The body building new mitochondria in response to aerobic training, more batteries, not just more charge.', related: [] },
+  { id: 'hallmarks-of-aging', term: 'Hallmarks of aging', plain: 'The agreed list of twelve biological root drivers of ageing. They feed each other in a cascade rather than acting alone.', related: [{ label: 'The hallmarks of aging', href: '/posts/hallmarks-of-aging/' }] },
+];
+---
+<Base title="Glossary" description="Plain-language definitions of the longevity jargon used across the series.">
+  <header class="site-head">
+    <p class="kicker">Reference</p>
+    <h1>Glossary</h1>
+    <p>The proper names, in plain words. Every term a post links to lives here.</p>
+  </header>
+
+  <dl class="terms">
+    {terms.map((t) => (
+      <div id={t.id} style="scroll-margin-top:80px">
+        <dt>{t.term}</dt>
+        <dd>{t.plain}</dd>
+        {t.related.length > 0 && (
+          <dd style="margin-top:4px;font-size:14px">
+            {t.related.map((r, i) => (<>{i > 0 ? ' · ' : ''}<a href={r.href}>{r.label}</a></>))}
+          </dd>
+        )}
+      </div>
+    ))}
+  </dl>
+
+  <p style="margin-top:36px"><a href="/">← all posts</a></p>
+</Base>

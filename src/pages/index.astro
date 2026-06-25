@@ -1,0 +1,29 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+
+const posts = (await getCollection('posts')).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
+const fmt = (d) => d.toLocaleDateString('en-GB', { year: 'numeric', month: 'short', day: 'numeric' });
+---
+<Base title="Longevity, in plain words">
+  <header class="site-head">
+    <p class="kicker">Longevity, in plain words</p>
+    <h1>What I'm learning, tested on our own floor.</h1>
+    <p>By Muthu, founder of Club EverStrong. The science, stripped of jargon, with the graphs that made it click.</p>
+  </header>
+
+  <ul class="post-list">
+    {posts.map((post) => (
+      <li>
+        <p class="meta">{fmt(post.data.date)}{post.data.evidence ? ` · evidence: ${post.data.evidence}` : ''}</p>
+        <h2><a href={`/posts/${post.slug}/`}>{post.data.title}</a></h2>
+        <p class="sum">{post.data.summary}</p>
+        {post.data.tags.length > 0 && (
+          <div class="tags">{post.data.tags.map((t) => <span class="tag-chip">{t}</span>)}</div>
+        )}
+      </li>
+    ))}
+  </ul>
+</Base>
